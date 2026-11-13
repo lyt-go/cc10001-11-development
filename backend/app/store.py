@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+import threading
 from typing import Any
 
 from app.seed import SEED_ROWS
@@ -14,18 +15,22 @@ class Store:
         self._tables: dict[str, list[dict[str, Any]]] = {
             name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
+        # 输出任务会并发读写同一批业务表，读写都经过这把锁保证计数一致。
+        self.lock = threading.RLock()
 
     def module_names(self) -> list[str]:
         return sorted(self._tables)
 
     def rows(self, module: str) -> list[dict[str, Any]]:
-        return self._tables.setdefault(module, [])
+        with self.lock:
+            return self._tables.setdefault(module, [])
 
     def find(self, module: str, entry_id: int) -> dict[str, Any] | None:
-        for row in self.rows(module):
-            if int(row.get("id", 0)) == entry_id:
-                return row
-        return None
+        with self.lock:
+            for row in self.rows(module):
+                if int(row.get("id", 0)) == entry_id:
+                    return row
+            return None
 
     def overview(self) -> dict[str, object]:
         modules: list[dict[str, object]] = []

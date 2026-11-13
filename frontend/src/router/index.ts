@@ -19,6 +19,7 @@ const Blacklist = () => import('@/views/blacklist/index.vue')
 const Storagelog = () => import('@/views/storagelog/index.vue')
 const Templatelib = () => import('@/views/templatelib/index.vue')
 const Datalabel = () => import('@/views/datalabel/index.vue')
+const Exportrun = () => import('@/views/exportrun/index.vue')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -42,6 +43,7 @@ const router = createRouter({
     { path: '/storagelog', name: 'storagelog', component: Storagelog },
     { path: '/templatelib', name: 'templatelib', component: Templatelib },
     { path: '/datalabel', name: 'datalabel', component: Datalabel },
+    { path: '/exportrun', name: 'exportrun', component: Exportrun },
   ],
 })
 

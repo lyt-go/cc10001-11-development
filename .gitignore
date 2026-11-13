@@ -16,6 +16,9 @@ dist/
 eggs/
 pip-wheel-metadata/
 
+# ===== 输出文件 =====
+backend/data/exports/
+
 # ===== 构建产物 =====
 dist/
 build/

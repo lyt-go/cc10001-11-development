@@ -28,6 +28,20 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class ExportRunRequest(BaseModel):
+    """执行一次分片输出：指定任务、批次、管道和输出配置。"""
+
+    task_code: str = ""
+    pipeline_code: str | None = None
+    export_code: str | None = None
+    batch: str = "default"
+    records: list[dict[str, Any]] | None = None
+    resume: bool = False
+    simulate_failure_at_shard: int | None = Field(
+        default=None, description="仅用于验证失败恢复：让指定序号的分片写入失败"
+    )
+
+
 
 class DatasourceEntry(BaseModel):
     """采集源明细结构。"""

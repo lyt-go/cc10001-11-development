@@ -24,5 +24,6 @@ from app.routers import blacklist as router_blacklist
 from app.routers import storagelog as router_storagelog
 from app.routers import templatelib as router_templatelib
 from app.routers import datalabel as router_datalabel
+from app.routers import exportrun as router_exportrun
 
-ROUTERS = [router_datasource, router_parserule, router_proxyconfig, router_ratelimiter, router_taskcrawl, router_pipeline, router_robotflow, router_retrypolicy, router_resultcheck, router_alertrule, router_diagnose, router_scheduler, router_exportconf, router_lmcfg, router_blacklist, router_storagelog, router_templatelib, router_datalabel]
+ROUTERS = [router_datasource, router_parserule, router_proxyconfig, router_ratelimiter, router_taskcrawl, router_pipeline, router_robotflow, router_retrypolicy, router_resultcheck, router_alertrule, router_diagnose, router_scheduler, router_exportconf, router_lmcfg, router_blacklist, router_storagelog, router_templatelib, router_datalabel, router_exportrun]
